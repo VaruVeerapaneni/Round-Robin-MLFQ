@@ -26,6 +26,8 @@
 
 > **Problem Statement 21:**  
 > *"UNIX operating system uses Round robin Time slicing with multilevel feedback for process scheduling. Assume that the processes (PCB's) arrive at random. Assume the time slice is 3 units. Simulate Round robin time slicing with fixed and variable (Randomized) burst times. Run the processes for fixed amount of time and find the average waiting time, average turn-around time of the processes completed."*
+>
+> **Implementation scope:** This project is an educational, discrete-event simulation based on the assigned scheduling scenario. It models MLFQ concepts and Round Robin time slicing; it does not modify, run inside, or reproduce the kernel scheduler of a UNIX operating system.
 
 ### Key Requirements Fulfilled:
 - **Round Robin Time Slicing:** Exact time quantum of **3 units** ($Q = 3$).
