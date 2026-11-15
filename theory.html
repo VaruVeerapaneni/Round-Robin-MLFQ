@@ -39,8 +39,8 @@
 <div class="main-wrapper">
     <div class="page-header">
         <div>
-            <h1 class="page-title">📘 UNIX MLFQ Scheduling Theory & Problem Statement</h1>
-            <p class="page-subtitle">Algorithmic principles, design goals, and execution rules of Multilevel Feedback Queues</p>
+            <h1 class="page-title">📘 MLFQ Scheduling Theory & Problem Statement</h1>
+            <p class="page-subtitle">Educational simulation of MLFQ concepts based on the assigned UNIX scheduling scenario</p>
         </div>
     </div>
 
@@ -54,6 +54,9 @@
             Assume that the processes (PCB&apos;s) arrive at random. Assume the time slice is 3 units. 
             Simulate Round robin time slicing with fixed and variable (Randomized) burst times. 
             Run the processes for fixed amount of time and find the average waiting time, average turn-around time of the processes completed.&rdquo;
+        </p>
+        <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin-top:10px;">
+            <strong>Implementation scope:</strong> This is an educational, standalone MLFQ simulation based on the assigned UNIX scheduling scenario. It demonstrates scheduling concepts; it does not modify, run inside, or reproduce an actual UNIX kernel scheduler.
         </p>
     </div>
 
@@ -111,7 +114,7 @@
     <!-- Theoretical Insights -->
     <div class="panel">
         <div class="panel-header">
-            <div class="panel-title">💡 Why UNIX MLFQ Approximates Shortest Job First (SJF)</div>
+            <div class="panel-title">💡 Why MLFQ Can Approximate Shortest Job First (SJF)</div>
         </div>
         <p style="color:#cbd5e1; margin-bottom:12px;">
             A fundamental challenge in operating system design is that the operating system cannot know beforehand how long a newly submitted process will execute.
