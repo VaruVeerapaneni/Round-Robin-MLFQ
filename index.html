@@ -126,13 +126,14 @@
 
         <!-- Playback Controller Toolbar -->
         <div class="btn-group">
-            <button class="btn btn-primary" id="btnRunSim" onclick="runSimulator()">▶ Run Simulation</button>
+            <button class="btn btn-primary" id="btnRunSim" type="button" onclick="runSimulator(event)">▶ Run Simulation</button>
             <button class="btn btn-cyan" id="btnPlayPause" onclick="togglePlayAnimation()">
                 <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Play Step Animation
             </button>
             <button class="btn btn-secondary" id="btnStep" onclick="stepForwardOneTick()">⏭ Step (+1 Tick)</button>
             <button class="btn btn-amber" id="btnReset" onclick="resetSimulator()">🔄 Reset Horizon</button>
-            <button class="btn btn-secondary" id="btnRandomize" onclick="randomizeSeed()">🎲 Randomize Seed</button>
+            <button class="btn btn-secondary" id="btnRandomize" type="button" onclick="randomizeSeed()">🎲 Randomize Seed</button>
+            <p id="simulationRunStatus" role="status" aria-live="polite" style="flex-basis:100%; margin:8px 0 0; color:var(--text-muted); font-size:13px;">Ready. Configure processes and click Run Simulation.</p>
         </div>
     </div>
 
@@ -376,7 +377,7 @@ function readManualWorkload() {
     return workload;
 }
 
-function runSimulator() {
+function runSimulatorCore() {
     stopAnimation();
     const q = 3;
     const simTime = Number(document.getElementById("inpSimTime")?.value);
@@ -430,6 +431,29 @@ function runSimulator() {
     document.getElementById("clockDisplay").innerText = simTime;
     document.getElementById("cpuActiveProc").innerText = "Execution Concluded";
     document.getElementById("quantumLeftDisplay").innerText = "0";
+}
+
+
+function runSimulator(event) {
+    if (event && typeof event.preventDefault === "function") event.preventDefault();
+    const status = document.getElementById("simulationRunStatus");
+    if (status) status.textContent = "Running simulation…";
+    try {
+        runSimulatorCore();
+        if (status) {
+            const completed = currentResult ? currentResult.doneCount : 0;
+            const total = currentResult ? currentResult.total : 0;
+            status.textContent = "Simulation updated successfully. Completed " + completed + " of " + total + " processes.";
+            status.style.color = "var(--emerald)";
+        }
+    } catch (error) {
+        console.error("MLFQ simulation failed:", error);
+        if (status) {
+            status.textContent = "Simulation failed: " + (error && error.message ? error.message : String(error));
+            status.style.color = "var(--danger, #f87171)";
+        }
+        alert("Simulation failed. Please check the process inputs. Details: " + (error && error.message ? error.message : String(error)));
+    }
 }
 
 function renderTable(tableId, procs) {
