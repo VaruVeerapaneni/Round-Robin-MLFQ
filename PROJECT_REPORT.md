@@ -19,7 +19,7 @@
 
 ## 1. ABSTRACT
 
-Process scheduling is a foundational service of modern multiprogramming operating systems. Traditional UNIX implementations employ a priority-based Multilevel Feedback Queue (MLFQ) scheduler with Round Robin (RR) time slicing. This project presents a discrete-event simulation of the UNIX MLFQ scheduler configured with a time quantum of 3 units ($Q = 3$). The simulator accepts a configurable number of Process Control Blocks (PCBs), with six example processes shown by default. Each process arrives at a randomized timestamp. The fixed-burst experiment assigns the same configurable CPU burst to every process; the variable-burst experiment independently randomizes each process's CPU burst. Both experiments use identical arrival timestamps for a fair comparison. The system executes over a fixed simulation horizon ($T_{sim}$), tracking CPU residency, queue degradation, preemption, and process completion. Comparative analysis demonstrates how MLFQ dynamically favors short, interactive tasks over CPU-intensive tasks, balancing turnaround times and system responsiveness.
+Process scheduling is a foundational service of modern multiprogramming operating systems. This project presents an educational, discrete-event simulation of a Multilevel Feedback Queue (MLFQ) scheduling model with Round Robin (RR) time slicing, based on the UNIX scheduling scenario specified in the assignment. It is a standalone simulator: it does not modify, run inside, or reproduce the kernel scheduler of a UNIX operating system. The simulation is configured with a time quantum of 3 units ($Q = 3$). The simulator accepts a configurable number of Process Control Blocks (PCBs), with six example processes shown by default. Each process arrives at a randomized timestamp. The fixed-burst experiment assigns the same configurable CPU burst to every process; the variable-burst experiment independently randomizes each process's CPU burst. Both experiments use identical arrival timestamps for a fair comparison. The system executes over a fixed simulation horizon ($T_{sim}$), tracking CPU residency, queue degradation, preemption, and process completion. Comparative analysis demonstrates how MLFQ dynamically favors short, interactive tasks over CPU-intensive tasks, balancing turnaround times and system responsiveness.
 
 ---
 
@@ -47,8 +47,8 @@ Process scheduling is a foundational service of modern multiprogramming operatin
 
 ## 3. THEORETICAL BACKGROUND
 
-### 3.1 UNIX Multilevel Feedback Queue (MLFQ) Scheduling
-In classic UNIX operating systems (such as System V and 4.3BSD), process priorities are dynamically recomputed based on CPU usage. The MLFQ algorithm addresses two conflicting operating system design goals:
+### 3.1 Multilevel Feedback Queue (MLFQ) Scheduling Concepts
+The assigned problem statement describes a UNIX scheduling scenario. This project uses a simplified educational MLFQ model to demonstrate the scheduling concepts; it is not an implementation of the scheduler used by System V, 4.3BSD, or any live UNIX kernel. MLFQ-style scheduling addresses two conflicting operating system design goals:
 1. Minimizing turnaround time for long batch jobs.
 2. Minimizing response time for short, interactive tasks.
 
@@ -191,7 +191,7 @@ Processes have varied workloads. Short tasks (e.g., P2 with burst=3, P6 with bur
 
 ## 7. CONCLUSION
 
-The project successfully modeled and evaluated the UNIX Multilevel Feedback Queue (MLFQ) process scheduling algorithm with Round Robin time slicing ($Q = 3$). Through rigorous simulation of both fixed and randomized burst distributions over fixed simulation durations:
+The project successfully modeled and evaluated an educational Multilevel Feedback Queue (MLFQ) scheduling simulation with Round Robin time slicing ($Q = 3$), based on the UNIX scheduling scenario in the assignment. The simulator demonstrates the scheduling concepts and does not modify or execute within an actual UNIX kernel. Through rigorous simulation of both fixed and randomized burst distributions over fixed simulation durations:
 - The MLFQ mechanism effectively approximates Shortest Job First (SJF) without requiring advance knowledge of burst times.
 - Short processes achieve exceptionally low waiting and turnaround times by completing within the top queue ($Q_0$).
 - Long processes are automatically relegated to lower-priority queues, preserving system responsiveness.
