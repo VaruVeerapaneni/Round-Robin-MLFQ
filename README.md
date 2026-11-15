@@ -90,12 +90,19 @@ python web_dashboard.py
 python -m unittest test_mlfq.py
 ```
 
+#### 6. Run the Web Simulator Locally (Browser)
+From the repository root, start Python's built-in web server:
+```bash
+python -m http.server 8080
+```
+Then open **http://localhost:8080/** in your browser. Keep the terminal running while using the site. This serves the existing HTML/CSS/JavaScript pages directly; no `npm install` or `package.json` is required.
+
 ---
 
 ## 📁 Project Architecture
 
 ```
-os_mlfq_simulator/
+Round-Robin-MLFQ/
 ├── mlfq/
 │   ├── __init__.py           # Package declarations
 │   ├── pcb.py                # Process Control Block & ProcessState definitions
